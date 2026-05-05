@@ -1,1 +1,17 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 010-create-user-credential-indexes
+      author: pemarival
+      logicalFilePath: db/changelog/changes/001_base/010_create_user_credential_indexes.sql
+      labels: "BD-01-dev,ddl,base,security"
+      comment: Creates indexes for user and credential tables.
+      changes:
+        - sqlFile:
+            path: 001_user_credential_indexes.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/09_indexes/001_user_credential_indexes.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

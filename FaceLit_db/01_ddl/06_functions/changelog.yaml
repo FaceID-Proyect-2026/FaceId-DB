@@ -1,1 +1,18 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 007-create-validate-email-function
+      author: pemarival
+      logicalFilePath: db/changelog/changes/001_base/007_create_validate_email_function.sql
+      labels: "BD-01-dev,ddl,base,security"
+      comment: Creates function for email validation.
+      changes:
+        - sqlFile:
+            path: 001_validate_email.sql
+            relativeToChangelogFile: true
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/06_functions/001_validate_email.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

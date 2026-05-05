@@ -1,49 +1,33 @@
 databaseChangeLog:
   - changeSet:
-      id: 003-create-security-tables
-      author: corhuila
-      logicalFilePath: db/changelog/changes/001_base/003_create_security_tables.sql
+      id: 001-create-user-table
+      author: pemarival
+      logicalFilePath: db/changelog/changes/001_base/003_create_user_table.sql
       labels: "BD-01-dev,ddl,base,security"
-      comment: Creates the baseline tables for the security module.
+      comment: Creates the user table for authentication and profile management.
       changes:
         - sqlFile:
-            path: 001_create_security_tables.sql
+            path: 001_user.sql
             relativeToChangelogFile: true
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_tables/001_create_security_tables.rollback.sql
+            path: ../../05_rollbacks/01_ddl/03_tables/001_user.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
-      id: 004-create-inventory-tables
-      author: corhuila
-      logicalFilePath: db/changelog/changes/001_base/004_create_inventory_tables.sql
-      labels: "BD-01-dev,ddl,base,inventory"
-      comment: Creates the baseline tables for the inventory module.
+      id: 002-create-credential-table
+      author: pemarival
+      logicalFilePath: db/changelog/changes/001_base/004_create_credential_table.sql
+      labels: "BD-01-dev,ddl,base,security"
+      comment: Creates the credential table for storing user authentication credentials.
       changes:
         - sqlFile:
-            path: 002_create_inventory_tables.sql
+            path: 002_credential.sql
             relativeToChangelogFile: true
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_tables/002_create_inventory_tables.rollback.sql
-            relativeToChangelogFile: true
-            stripComments: false
-  - changeSet:
-      id: 005-create-billing-tables
-      author: corhuila
-      logicalFilePath: db/changelog/changes/001_base/005_create_billing_tables.sql
-      labels: "BD-01-dev,ddl,base,billing"
-      comment: Creates the baseline tables for the billing module.
-      changes:
-        - sqlFile:
-            path: 003_create_billing_tables.sql
-            relativeToChangelogFile: true
-            stripComments: false
-      rollback:
-        - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_tables/003_create_billing_tables.rollback.sql
+            path: ../../05_rollbacks/01_ddl/03_tables/002_credential.rollback.sql
             relativeToChangelogFile: true
             stripComments: false

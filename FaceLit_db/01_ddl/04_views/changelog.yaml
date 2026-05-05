@@ -1,1 +1,17 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 006-create-active-users-view
+      author: pemarival
+      logicalFilePath: db/changelog/changes/001_base/006_create_active_users_view.sql
+      labels: "BD-01-dev,ddl,base,security"
+      comment: Creates view for querying active users.
+      changes:
+        - sqlFile:
+            path: 001_active_users.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_views/001_active_users.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
