@@ -1,14 +1,14 @@
-# Shopping Cart DB
+# Facelit DB
 
-Repositorio minimo para versionar la base de datos base de Shopping Cart con Liquibase y PostgreSQL.
+Repositorio minimo para versionar la base de datos base de Facelit con Liquibase y PostgreSQL.
 
 ## Alcance Actual
 
 Este repositorio solo administra lo que ya existe hoy en la rama:
 
 - extension `uuid-ossp`
-- schemas `security`, `inventory` y `bill`
-- tablas base de seguridad, inventario y facturacion
+- schemas `security`
+- tablas base de seguridad.
 
 No incluye vistas, funciones, procedimientos, triggers, indices ni datos semilla.
 
@@ -303,8 +303,6 @@ El `changelog-master.yaml` aplica los cambios en este orden:
 1. habilita la extension UUID
 2. crea los schemas
 3. crea tablas de `security`
-4. crea tablas de `inventory`
-5. crea tablas de `bill`
 
 Ese orden evita errores por dependencias entre tablas y llaves foraneas.
 
@@ -363,7 +361,6 @@ docker compose -p facelit-docker-compose --profile tooling run --rm liquibase ta
 ```
 
 2. Aplicar nuevos cambios (`update`).
-
 3. Si debes volver al punto estable:
 
 ```bash
@@ -434,30 +431,16 @@ Politica de seguridad por defecto:
 - antes del rollback aislado, ejecuta validacion de dependencias con `RESTRICT`
 - si detecta dependencia en cambios posteriores, rechaza el rollback aislado para proteger la integridad
 
-Preview del rollback por ID (no ejecuta cambios):
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1 -ChangesetId "005-create-billing-tables" -PreviewOnly
-```
-
-Ejecucion real del rollback por ID:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1 -ChangesetId "005-create-billing-tables" -Execute
-```
-
-Si el `id` existe con mas de un autor, ejecuta con `-Author`.
-
 Si realmente necesitas rollback en cascada (desde ese ID hacia arriba), debes confirmarlo explicitamente:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1 -ChangesetId "003-create-security-tables" -AllowCascade -Execute
+powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1 -ChangesetId "001-create-security-tables" -AllowCascade -Execute
 ```
 
 Para ver primero el SQL de esa cascada sin ejecutar:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1 -ChangesetId "003-create-security-tables" -AllowCascade -PreviewOnly
+powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1 -ChangesetId "001-create-security-tables" -AllowCascade -PreviewOnly
 ```
 
 ## Volver A Aplicar Despues De Rollback
@@ -497,5 +480,5 @@ El formato del `id` del changeset debe seguir el criterio operativo definido por
 Cuando el flujo funciona correctamente, la base queda con:
 
 - extension `uuid-ossp`
-- schemas `security`, `inventory`, `bill`
-- tablas `role`, `user`, `form`, `category`, `product`, `inventory`, `bill`, `bill_item`
+- schemas `security`
+- tablas `user`, credential.
