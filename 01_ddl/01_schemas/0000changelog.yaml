@@ -1,10 +1,9 @@
 databaseChangeLog:
   - changeSet:
-      id: 001-create-schemas
-      author: pemarival
-      logicalFilePath: db/changelog/changes/001_base/002_create_schemas.sql
+      id: 75a51c2b-c702-48dd-81d6-8b0ddc8032c1
+      author: ariel5253
       labels: "BD-01-dev,ddl,base,schema"
-      comment: "Creates the baseline schemas: security."
+      comment: "Creates the baseline schemas: security, inventory, and bill."
       changes:
         - sqlFile:
             path: 001_create_schemas.sql

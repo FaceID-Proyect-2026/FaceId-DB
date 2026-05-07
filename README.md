@@ -1,309 +1,394 @@
-# FaceLit DB
+# Shopping Cart DB
 
-Repositorio dedicado a la gestión y versionado de la base de datos del sistema **FaceLit** — sistema automatizado de control de asistencia mediante reconocimiento facial para el SENA.
-
-## Propósito del Sistema
-
-FaceLit reemplaza el registro manual de asistencia (listas en Excel) por un proceso automático basado en reconocimiento facial. El sistema identifica a cada aprendiz al ingresar al ambiente de formación, registra la hora exacta y clasifica su estado como **puntual**, **tardío** o **ausente**. Genera reportes organizados para instructores y administradores.
-
-Este repositorio gestiona únicamente la base de datos: estructura, lógica, permisos y datos de referencia.
-
----
+Repositorio minimo para versionar la base de datos base de Shopping Cart con Liquibase y PostgreSQL.
 
 ## Alcance Actual
 
-Este repositorio administra lo que existe en la rama activa:
+Este repositorio solo administra lo que ya existe hoy en la rama:
 
-- Extensión `uuid-ossp`
-- Schemas: `security`, `academic`, `attendance`, `facial`, `audit`
-- Tablas base por módulo funcional
+- extension `uuid-ossp`
+- schemas `security`, `inventory` y `bill`
+- tablas base de seguridad, inventario y facturacion
 
-No incluye aún: vistas, funciones, procedimientos, triggers, índices ni datos semilla.
+No incluye vistas, funciones, procedimientos, triggers, indices ni datos semilla.
 
----
-
-## Módulos del Sistema (Requerimientos Funcionales)
-
-La base de datos está organizada alrededor de los siguientes módulos:
-
-| Módulo | Descripción |
-|--------|-------------|
-| **RF-1 Accesos** | Autenticación, roles, permisos y restablecimiento de contraseña |
-| **RF-2 Ambientes** | Registro, consulta y restricciones de ambientes de formación |
-| **RF-3 Gestión Académica** | Programas, fichas y aprendices |
-| **RF-4 Horarios** | Horarios por ficha, ambiente e instructor |
-| **RF-5 Reconocimiento Facial** | Registro de rostros y vectores biométricos (desde Raspberry Pi) |
-| **RF-6 Asistencias** | Entradas, salidas, validación de ambiente y cálculo de retrasos |
-| **RF-7 Reportes** | Asistencia individual, grupal, estadísticas y exportación |
-| **RF-8 Notificaciones** | Generación automática y envío por correo |
-| **RF-9 Perfil** | Configuración de usuario y personalización |
-| **RF-10 Administración** | Gestión avanzada de usuarios y roles |
-| **RF-11 Bitácoras** | Auditoría de acciones internas y externas |
-
----
-
-## Estructura del Repositorio
+## Estructura
 
 ```text
-facelit-db/
-├── changelog-master.yaml
-├── 01_ddl/
-│   ├── changelog.yaml
-│   ├── 00_extensions/
-│   │   └── changelog.yaml
-│   ├── 01_schemas/
-│   │   └── changelog.yaml
-│   ├── 02_types/
-│   │   └── changelog.yaml
-│   ├── 03_tables/
-│   │   └── changelog.yaml
-│   ├── 04_views/
-│   │   └── changelog.yaml
-│   ├── 05_materialized_views/
-│   │   └── changelog.yaml
-│   ├── 06_functions/
-│   │   └── changelog.yaml
-│   ├── 07_procedures/
-│   │   └── changelog.yaml
-│   ├── 08_triggers/
-│   │   └── changelog.yaml
-│   └── 09_indexes/
-│       └── changelog.yaml
-├── 02_dml/
-│   ├── changelog.yaml
-│   ├── 00_inserts/
-│   │   └── changelog.yaml
-│   ├── 01_updates/
-│   │   └── changelog.yaml
-│   ├── 02_deletes/
-│   │   └── changelog.yaml
-│   ├── 03_upserts/
-│   │   └── changelog.yaml
-│   └── 04_patches/
-│       └── changelog.yaml
-├── 03_dcl/
-│   ├── changelog.yaml
-│   ├── 00_roles/
-│   │   └── changelog.yaml
-│   ├── 01_grants/
-│   │   └── changelog.yaml
-│   └── 02_policies/
-│       └── changelog.yaml
-├── 04_tcl/
-│   ├── changelog.yaml
-│   ├── 00_transaction_blocks/
-│   │   └── changelog.yaml
-│   └── 01_manual_recoveries/
-│       └── changelog.yaml
-├── 05_rollbacks/
-│   ├── 01_ddl/
-│   │   ├── 00_extensions/
-│   │   ├── 01_schemas/
-│   │   ├── 02_types/
-│   │   ├── 03_tables/
-│   │   ├── 04_views/
-│   │   ├── 05_materialized_views/
-│   │   ├── 06_functions/
-│   │   ├── 07_procedures/
-│   │   ├── 08_triggers/
-│   │   └── 09_indexes/
-│   ├── 02_dml/
-│   │   ├── 00_inserts/
-│   │   ├── 01_updates/
-│   │   ├── 02_deletes/
-│   │   ├── 03_upserts/
-│   │   └── 04_patches/
-│   └── 03_dcl/
-│       ├── 00_roles/
-│       ├── 01_grants/
-│       └── 02_policies/
-├── docker-compose.yml
-├── .env.example
-├── liquibase.properties.example
-├── docs/
-└── docker/
-    └── liquibase/
-        └── Dockerfile
+shopping-cart-db/
+|-- changelog-master.yaml
+|-- 01_ddl/
+|   |-- 0000changelog.yaml
+|   |-- 00_extensions/
+|   |   `-- 0000changelog.yaml
+|   |-- 01_schemas/
+|   |   `-- 0000changelog.yaml
+|   |-- 02_types/
+|   |   `-- 0000changelog.yaml
+|   |-- 03_tables/
+|   |   `-- 0000changelog.yaml
+|   |-- 04_views/
+|   |   `-- 0000changelog.yaml
+|   |-- 05_materialized_views/
+|   |   `-- 0000changelog.yaml
+|   |-- 06_functions/
+|   |   `-- 0000changelog.yaml
+|   |-- 07_procedures/
+|   |   `-- 0000changelog.yaml
+|   |-- 08_triggers/
+|   |   `-- 0000changelog.yaml
+|   `-- 09_indexes/
+|       `-- 0000changelog.yaml
+|-- 02_dml/
+|   |-- 0000changelog.yaml
+|   |-- 00_inserts/
+|   |   `-- 0000changelog.yaml
+|   |-- 01_updates/
+|   |   `-- 0000changelog.yaml
+|   |-- 02_deletes/
+|   |   `-- 0000changelog.yaml
+|   |-- 03_upserts/
+|   |   `-- 0000changelog.yaml
+|   `-- 04_patches/
+|       `-- 0000changelog.yaml
+|-- 03_dcl/
+|   |-- 0000changelog.yaml
+|   |-- 00_roles/
+|   |   `-- 0000changelog.yaml
+|   |-- 01_grants/
+|   |   `-- 0000changelog.yaml
+|   `-- 02_policies/
+|       `-- 0000changelog.yaml
+|-- 04_tcl/
+|   |-- 0000changelog.yaml
+|   |-- 00_transaction_blocks/
+|   |   `-- 0000changelog.yaml
+|   `-- 01_manual_recoveries/
+|       `-- 0000changelog.yaml
+|-- 05_rollbacks/
+|   |-- 01_ddl/
+|   |   |-- 00_extensions/
+|   |   |-- 01_schemas/
+|   |   |-- 02_types/
+|   |   |-- 03_tables/
+|   |   |-- 04_views/
+|   |   |-- 05_materialized_views/
+|   |   |-- 06_functions/
+|   |   |-- 07_procedures/
+|   |   |-- 08_triggers/
+|   |   `-- 09_indexes/
+|   |-- 02_dml/
+|   |   |-- 00_inserts/
+|   |   |-- 01_updates/
+|   |   |-- 02_deletes/
+|   |   |-- 03_upserts/
+|   |   `-- 04_patches/
+|   |-- 03_dcl/
+|   |   |-- 00_roles/
+|   |   |-- 01_grants/
+|   |   `-- 02_policies/
+|   `-- 04_tcl/
+|       |-- 00_transaction_blocks/
+|       `-- 01_manual_recoveries/
+|-- docker-compose.yml
+|-- .env.example
+|-- liquibase.properties.example
+|-- README.md
+|-- docs/
+`-- docker/
 ```
 
----
+## Arquitectura De Capas
 
-## Arquitectura de Schemas
+La arquitectura queda organizada por responsabilidad SQL:
 
-La base de datos se divide en schemas por responsabilidad funcional:
+- `01_ddl`: cambios estructurales
+- `02_dml`: cambios de datos por verbo operativo
+- `03_dcl`: seguridad, permisos y control de acceso
+- `04_tcl`: operaciones transaccionales o de recuperacion excepcionales
 
-| Schema | Responsabilidad |
-|--------|----------------|
-| `security` | Usuarios, roles, permisos, sesiones (RF-1, RF-10) |
-| `academic` | Programas, fichas, aprendices, ambientes, horarios (RF-2, RF-3, RF-4) |
-| `facial` | Vectores biométricos, modelos de reconocimiento (RF-5) |
-| `attendance` | Registros de asistencia, validaciones, excusas (RF-6, RF-7) |
-| `audit` | Bitácoras, notificaciones, historial de acciones (RF-8, RF-11) |
+Dentro de cada capa, los directorios se dividen por familia tecnica para que el crecimiento siga siendo ordenado.
 
----
+## Por Que `db/` Ya No Existe
 
-## Arquitectura de Capas SQL
+En un repositorio que ya es exclusivamente de base de datos, `db/` no agrega semantica; solo agrega profundidad innecesaria.
 
-| Capa | Directorio | Responsabilidad |
-|------|------------|----------------|
-| DDL | `01_ddl/` | Estructura: extensiones, schemas, tipos, tablas, vistas, funciones, triggers, índices |
-| DML | `02_dml/` | Datos: inserts, updates, deletes, upserts, parches |
-| DCL | `03_dcl/` | Seguridad: roles, grants, políticas de acceso |
-| TCL | `04_tcl/` | Transacciones excepcionales y recuperaciones manuales |
-| Rollbacks | `05_rollbacks/` | Árbol espejo con scripts de reversa por capa |
+Por eso el contrato de despliegue ahora vive directo en [changelog-master.yaml](C:/www/code-corhuila/shopping-cart-db/changelog-master.yaml#L1).
 
----
+## Orquestacion Por YAML
 
-## Estado Actual del Despliegue
+La orquestacion ahora esta distribuida por niveles:
 
-### Capas activas hoy
+- `changelog-master.yaml`: coordina las capas principales
+- `01_ddl/0000changelog.yaml`, `02_dml/0000changelog.yaml`, `03_dcl/0000changelog.yaml`, `04_tcl/0000changelog.yaml`: coordinan cada paquete principal
+- cada subcarpeta tiene su propio `0000changelog.yaml` para declarar su responsabilidad concreta
 
-- `01_ddl/00_extensions` — habilita `uuid-ossp`
-- `01_ddl/01_schemas` — crea los cinco schemas del sistema
-- `01_ddl/03_tables` — tablas base de todos los módulos
+Eso deja el repositorio mas modular: cada paquete conoce solo sus hijos directos y cada subcarpeta controla su propio contenido activo.
 
-### Capas reservadas (listas, sin uso activo aún)
+## Arbol De Rollbacks En Raiz
 
-- `01_ddl/02_types` — tipos enumerados (estado de asistencia, roles, etc.)
-- `01_ddl/04_views` — vistas para reportes frecuentes
-- `01_ddl/05_materialized_views` — vistas materializadas para estadísticas históricas
-- `01_ddl/06_functions` — lógica de cálculo de retrasos, validaciones
-- `01_ddl/07_procedures` — registro de asistencia, generación de reportes
-- `01_ddl/08_triggers` — auditoría automática, updated_at
-- `01_ddl/09_indexes` — optimización de búsquedas por aprendiz, fecha, ambiente
-- `02_dml/` — datos semilla de roles, programas y configuración base
-- `03_dcl/` — roles de BD y grants por schema
-- `04_tcl/` — bloques transaccionales excepcionales
+Los scripts de rollback quedan separados en `05_rollbacks/` en la raiz, con arbol espejo por capas.
 
-Una carpeta existe y tiene propósito definido, pero no participa en el despliegue hasta que se activa desde su `changelog.yaml` padre.
+En cada `changeSet`, el `rollback.sqlFile` apunta a esa ruta centralizada. Esto facilita auditoria y seguimiento cuando el equipo quiere revisar reversas sin mezclar archivos de avance y reversa.
 
----
+La numeracion deja `01` a `04` para capas funcionales y usa `05` como bloque de reversa.
 
-## Estado Esperado Después del Despliegue Inicial
+## Regla De Activacion
 
-Cuando el flujo funciona correctamente, la base queda con:
+Una carpeta o script solo se vuelve activo cuando entra en la cadena de includes desde [changelog-master.yaml](C:/www/code-corhuila/shopping-cart-db/changelog-master.yaml#L1).
 
-- Extensión `uuid-ossp` habilitada
-- Schemas: `security`, `academic`, `facial`, `attendance`, `audit`
-- Tablas del módulo `security`: `role`, `user`, `permission`, `user_session`, `password_reset`
-- Tablas del módulo `academic`: `program`, `cohort`, `learner`, `environment`, `environment_restriction`, `schedule`, `instructor_schedule`
-- Tablas del módulo `facial`: `face_encoding`, `recognition_model`, `recognition_event`
-- Tablas del módulo `attendance`: `attendance_record`, `attendance_excuse`, `attendance_validation`
-- Tablas del módulo `audit`: `system_log`, `notification`, `notification_log`
+Mientras eso no ocurra:
 
----
+- la carpeta puede existir
+- su proposito puede estar definido
+- pero no participa en el despliegue
+
+En la practica, eso significa que cada nivel gobierna solo su alcance inmediato:
+
+- el `master` activa capas
+- cada capa activa subcarpetas
+- cada subcarpeta activa sus scripts SQL
+
+## Capa Activa Hoy
+
+Hoy el despliegue funcional usa:
+
+- `01_ddl/00_extensions`
+- `01_ddl/01_schemas`
+- `01_ddl/03_tables`
+
+## Capas Reservadas
+
+Hoy quedan listas y gobernadas, pero sin uso activo:
+
+- `01_ddl/02_types`
+- `01_ddl/04_views`
+- `01_ddl/05_materialized_views`
+- `01_ddl/06_functions`
+- `01_ddl/07_procedures`
+- `01_ddl/08_triggers`
+- `01_ddl/09_indexes`
+- `02_dml`
+- `03_dcl`
+- `04_tcl/00_transaction_blocks`
+- `04_tcl/01_manual_recoveries`
+
+## Criterio Mas Experto
+
+Si pensamos como ingenieria de datos o de plataforma:
+
+- `DDL` debe concentrar la evolucion del modelo fisico
+- `DML` debe separar los cambios de datos de la estructura y, si el equipo necesita trazabilidad fina, conviene hacerlo visible por verbo principal
+- `DCL` debe aislar seguridad y permisos
+- `TCL` normalmente debe mantenerse pequeno, porque Liquibase ya controla buena parte del orden y la transaccionalidad
+
+Eso suele ser mas limpio que mezclar todo por objeto tecnico o esconder el flujo activo dentro de una carpeta generica.
+
+## Estructuras Complementarias Posibles
+
+Si el repositorio crece, estas extensiones siguen siendo validas dentro de la taxonomia actual:
+
+- `13_sequences`: secuencias explicitas
+- `14_constraints`: constraints complejas separadas de tablas
+- `15_permissions`: grants, roles y permisos
+- `16_partitions`: particiones
+- `17_jobs`: jobs o scheduler SQL si aplica
+- `18_hotfixes`: cambios urgentes y acotados
+- `19_reference_data`: maestros estables
+- `20_patches`: scripts excepcionales de correccion
+
+La explicacion completa de esta arquitectura esta en [sql-layer-architecture.md](C:/www/code-corhuila/shopping-cart-db/docs/sql-layer-architecture.md).
+
+## Seguimiento De Datos
+
+La capa `02_dml` queda intencionalmente explicita:
+
+- `02_dml/00_inserts`: altas o cargas nuevas
+- `02_dml/01_updates`: correcciones o modificaciones
+- `02_dml/02_deletes`: bajas controladas
+- `02_dml/03_upserts`: insercion o actualizacion en una sola operacion
+- `02_dml/04_patches`: scripts mixtos o parches excepcionales
+
+Esto facilita mucho mas el seguimiento operativo: que se inserto, que se corrigio, que se elimino y que fue un parche compuesto.
 
 ## Requisitos
 
 - Docker Desktop
 - Docker Compose
-- Liquibase local solo si se ejecuta fuera de Docker
+- Liquibase local solo si quieres ejecutarlo fuera de Docker
 
----
+## Reset Limpio Del Proyecto (Solo Este Repo)
 
-## Uso Rápido con Docker
-
-### 1. Configurar variables de entorno (opcional)
+Ejecuta este flujo desde la raiz del repositorio cuando necesites limpiar el estado y volver a aplicar todo desde cero:
 
 ```bash
-cp .env.example .env
-# Editar .env si se necesitan credenciales o puertos distintos a los valores por defecto
+docker compose -p facelit-docker-compose down --volumes --remove-orphans
+docker compose -p facelit-docker-compose up -d postgres
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase validate
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase update
 ```
 
-### 2. Levantar PostgreSQL
+Nota: en DBeaver puede aparecer `SQL Error [08003]: This connection has been closed` despues del reset. Solo debes reconectar el datasource y refrescar `Schemas`.
+
+## Uso Rapido Con Docker
+
+1. Si quieres personalizar credenciales o puerto, crea `.env` a partir de `.env.example`.
+2. Levanta PostgreSQL:
 
 ```bash
-docker compose -p facelit-db up -d postgres
+docker compose -p facelit-docker-compose up -d postgres
 ```
 
-### 3. Construir imagen de Liquibase (solo la primera vez)
+3. Construye la imagen de tooling de Liquibase solo la primera vez:
 
 ```bash
-docker compose -p facelit-db --profile tooling build liquibase
+docker compose -p facelit-docker-compose --profile tooling build liquibase
 ```
 
-### 4. Validar el changelog
+4. Valida el changelog:
 
 ```bash
-docker compose -p facelit-db --profile tooling run --rm liquibase validate
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase validate
 ```
 
-### 5. Ver el estado actual
+5. Revisa el estado:
 
 ```bash
-docker compose -p facelit-db --profile tooling run --rm liquibase status
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase status
 ```
 
-### 6. Aplicar la estructura base
+6. Aplica la estructura base:
 
 ```bash
-docker compose -p facelit-db --profile tooling run --rm liquibase update
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase update
 ```
 
-### 7. Generar SQL sin ejecutar (recomendado antes de aplicar en producción)
+7. Prueba el rollback del ultimo changeset:
 
 ```bash
-docker compose -p facelit-db --profile tooling run --rm liquibase update-sql
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase rollback-count --count=1
 ```
 
----
-
-## Reset Limpio del Proyecto
-
-Ejecutar desde la raíz cuando se necesite volver a aplicar todo desde cero:
+8. Si quieres marcar un punto claro antes de un cambio, crea un tag operativo:
 
 ```bash
-docker compose -p facelit-db down --volumes --remove-orphans
-docker compose -p facelit-db up -d postgres
-docker compose -p facelit-db --profile tooling run --rm liquibase validate
-docker compose -p facelit-db --profile tooling run --rm liquibase update
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase tag --tag=pre_cambio_x
 ```
 
-> En DBeaver puede aparecer `SQL Error [08003]: This connection has been closed` después del reset. Solo reconectar el datasource y refrescar `Schemas`.
+9. Genera el SQL sin ejecutar cambios:
 
----
+```bash
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase update-sql
+```
+
+## Uso Con Liquibase Local
+
+Usa esta opcion solo si tu instalacion local de Liquibase ya tiene disponible el driver JDBC de PostgreSQL.
+
+1. Copia `liquibase.properties.example` como `liquibase.properties`.
+2. Ajusta host, usuario, password y base de datos si cambiaste los valores por defecto.
+3. Ejecuta los mismos comandos de Liquibase desde la raiz del repo:
+
+```bash
+liquibase validate
+liquibase status
+liquibase update
+liquibase rollback-count --count=1
+```
+
+## Orden De Ejecucion
+
+El `changelog-master.yaml` aplica los cambios en este orden:
+
+1. habilita la extension UUID
+2. crea los schemas
+3. crea tablas de `security`
+4. crea tablas de `inventory`
+5. crea tablas de `bill`
+
+Ese orden evita errores por dependencias entre tablas y llaves foraneas.
+
+## Buenas Practicas Adoptadas
+
+- un solo `master changelog`
+- separacion por capa SQL y por responsabilidad de paquete
+- archivos pequenos y ordenados por responsabilidad
+- un `0000changelog.yaml` por paquete y subpaquete
+- changesets declarativos en YAML con `sqlFile` de avance y reversa
+- rollback separado en `sqlFile` dedicados bajo `05_rollbacks/`
+- configuracion local separada en archivos `.example`
+- runner Docker de Liquibase con driver PostgreSQL preinstalado
+- puerto por defecto `5439` para evitar choques con una instalacion local de PostgreSQL en `5432`
+- contrato de despliegue visible desde la raiz del repo
+
+## Reglas Para Cambios Nuevos
+
+- no modificar changesets ya aplicados
+- crear nuevos archivos para cada cambio posterior
+- mantener el orden de dependencias en el master changelog
+- no subir secretos reales al repositorio
+- validar con `validate` y `update-sql` antes de aplicar
+- antes de un `UPDATE` o `DELETE` sensible, definir por escrito la estrategia de reversa
+- antes de un parche delicado, crear un `tag`
 
 ## Rollback Operativo
 
-Cada `changeSet` activo de DDL tiene su `rollback.sqlFile` en `05_rollbacks/`.
+En este repositorio, cada `changeSet` activo de DDL tiene su `rollback.sqlFile` en `05_rollbacks/`.
+
+Rollback del ultimo `changeSet` aplicado:
 
 ```bash
-# Rollback del último changeSet aplicado
-docker compose -p facelit-db --profile tooling run --rm liquibase rollback-count --count=1
-
-# Rollback de los últimos N changesets
-docker compose -p facelit-db --profile tooling run --rm liquibase rollback-count --count=3
-
-# Preview sin ejecutar (recomendado siempre antes de revertir)
-docker compose -p facelit-db --profile tooling run --rm liquibase rollback-count-sql --count=1
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase rollback-count --count=1
 ```
 
-### Flujo profesional con tag
+Rollback de los ultimos `N` changesets:
 
 ```bash
-# 1. Marcar punto estable antes del cambio
-docker compose -p facelit-db --profile tooling run --rm liquibase tag --tag=facelit_stable_v1
-
-# 2. Aplicar nuevos cambios
-docker compose -p facelit-db --profile tooling run --rm liquibase update
-
-# 3. Volver al punto estable si algo falla
-docker compose -p facelit-db --profile tooling run --rm liquibase rollback --tag=facelit_stable_v1
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase rollback-count --count=2
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase rollback-count --count=3
 ```
 
-### Rollback por fecha
+Vista previa del rollback sin ejecutar (recomendado antes de revertir):
 
 ```bash
-docker compose -p facelit-db --profile tooling run --rm liquibase rollback-to-date "2026-05-01 09:00:00"
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase rollback-count-sql --count=1
 ```
 
-### Auditoría post-despliegue
+Flujo profesional con `tag` + `rollback --tag`:
+
+1. Marcar un punto estable antes del cambio:
 
 ```bash
-docker compose -p facelit-db --profile tooling run --rm liquibase history
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase tag --tag=bd01_stable
 ```
 
-### Verificación directa en base de datos
+2. Aplicar nuevos cambios (`update`).
+
+3. Si debes volver al punto estable:
+
+```bash
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase rollback --tag=bd01_stable
+```
+
+Rollback por fecha/hora (cuando aplica):
+
+```bash
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase rollback-to-date "2026-03-26 13:21:00"
+```
+
+Auditoria despues de aplicar o revertir:
+
+```bash
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase history
+```
+
+Validar si un tag existe:
+
+```bash
+docker compose -p facelit-docker-compose --profile tooling run --rm liquibase tag-exists --tag=bd01_stable
+```
+
+Verificacion directa en DB (util en Liquibase 5.0.2):
 
 ```sql
 SELECT orderexecuted, id, author, filename, tag
@@ -311,90 +396,106 @@ FROM public.databasechangelog
 ORDER BY orderexecuted;
 ```
 
----
+## Rollback Por Changeset ID
 
-## Uso con Liquibase Local
+Liquibase Community no trae rollback directo por `changeset id`, pero este repo incluye helper para hacerlo de forma controlada:
 
-Usar solo si la instalación local tiene el driver JDBC de PostgreSQL disponible.
+Atajos `ps1` (un archivo por accion):
 
-```bash
-cp liquibase.properties.example liquibase.properties
-# Ajustar credenciales si se cambiaron los valores por defecto
+```powershell
+# Rollback por ID (seguro, interactivo)
+powershell -ExecutionPolicy Bypass -File .\scripts\01_rollback_by_id.ps1
 
-liquibase validate
-liquibase status
-liquibase update
-liquibase rollback-count --count=1
+# Solo preview por ID
+powershell -ExecutionPolicy Bypass -File .\scripts\02_rollback_by_id_preview.ps1
+
+# Rollback en cascada por ID (peligroso, pide confirmacion extra)
+powershell -ExecutionPolicy Bypass -File .\scripts\03_rollback_by_id_cascade.ps1
+
+# Volver a aplicar solo el siguiente pendiente
+powershell -ExecutionPolicy Bypass -File .\scripts\04_reapply_next.ps1
+
+# Volver a aplicar todos los pendientes
+powershell -ExecutionPolicy Bypass -File .\scripts\05_reapply_all.ps1
 ```
 
----
+Uso interactivo simple (recomendado):
 
-## Orden de Ejecución del Master Changelog
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1
+```
 
-El `changelog-master.yaml` aplica los cambios en este orden:
+El script te pide el `changeset id`, muestra preview SQL y pregunta si quieres ejecutar el rollback.
 
-1. Habilita la extensión `uuid-ossp`
-2. Crea los cinco schemas del sistema
-3. Crea tablas del schema `security`
-4. Crea tablas del schema `academic`
-5. Crea tablas del schema `facial`
-6. Crea tablas del schema `attendance`
-7. Crea tablas del schema `audit`
+Politica de seguridad por defecto:
 
-Este orden evita errores por dependencias entre tablas y llaves foráneas.
+- si es el ultimo changeset aplicado, usa rollback normal de Liquibase
+- si es un changeset intermedio, intenta rollback aislado de ese ID
+- antes del rollback aislado, ejecuta validacion de dependencias con `RESTRICT`
+- si detecta dependencia en cambios posteriores, rechaza el rollback aislado para proteger la integridad
 
----
+Preview del rollback por ID (no ejecuta cambios):
 
-## Reglas para Cambios Nuevos
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1 -ChangesetId "005-create-billing-tables" -PreviewOnly
+```
 
-- No modificar changesets ya aplicados
-- Crear nuevos archivos para cada cambio posterior
-- Mantener el orden de dependencias en el master changelog
-- No subir secretos reales al repositorio
-- Validar con `validate` y `update-sql` antes de aplicar en un entorno compartido
-- Antes de un `UPDATE` o `DELETE` sensible, definir por escrito la estrategia de reversa
-- Antes de un parche delicado, crear un `tag`
+Ejecucion real del rollback por ID:
 
----
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1 -ChangesetId "005-create-billing-tables" -Execute
+```
 
-## Política de IDs de Changeset
+Si el `id` existe con mas de un autor, ejecuta con `-Author`.
 
-Se usan IDs semánticos, no UUIDs aleatorios. Liquibase garantiza unicidad por la combinación `id + author + logicalFilePath`.
+Si realmente necesitas rollback en cascada (desde ese ID hacia arriba), debes confirmarlo explicitamente:
 
-Formato recomendado: `{NNN}-{modulo}-{descripcion-corta}`
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1 -ChangesetId "003-create-security-tables" -AllowCascade -Execute
+```
 
-Ejemplos:
-- `001-security-create-role-table`
-- `002-academic-create-program-table`
-- `003-facial-create-face-encoding-table`
+Para ver primero el SQL de esa cascada sin ejecutar:
 
----
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\rollback-by-id.ps1 -ChangesetId "003-create-security-tables" -AllowCascade -PreviewOnly
+```
 
-## Buenas Prácticas Adoptadas
+## Volver A Aplicar Despues De Rollback
 
-- Un solo `master changelog` en la raíz
-- Separación por capa SQL y por responsabilidad de schema
-- Archivos pequeños y ordenados por responsabilidad
-- Un `changelog.yaml` por paquete y subpaquete
-- Changesets declarativos en YAML con `sqlFile` de avance y reversa
-- Rollback separado en `sqlFile` dedicados bajo `05_rollbacks/`
-- Configuración local separada en archivos `.example`
-- Runner Docker de Liquibase con driver PostgreSQL preinstalado
-- Puerto `5433` por defecto para evitar choques con una instalación local de PostgreSQL en `5432`
-- Contrato de despliegue visible desde la raíz del repositorio
+Uso interactivo simple:
 
----
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\reapply-after-rollback.ps1
+```
 
-## Integrantes del Proyecto
+El script te pregunta si quieres:
 
-| Rol | Responsabilidad principal |
-|-----|--------------------------|
-| Base de datos (1) | Modelo entidad-relación, tablas, vistas, lógica SQL |
-| Base de datos (2) | Estructura del repositorio, Liquibase, Docker, índices, triggers |
-| Frontend | Wireframes, diseño visual, maquetado de interfaces |
+1. aplicar solo el siguiente changeset pendiente (por ejemplo volver a poner el `005`)
+2. aplicar todos los pendientes
 
----
+Ejecucion directa sin preguntas:
 
-## Sobre FaceLit
+```powershell
+# Solo el siguiente pendiente
+powershell -ExecutionPolicy Bypass -File .\scripts\reapply-after-rollback.ps1 -OnlyNext -AutoConfirm
 
-**FaceLit** es un sistema desarrollado para el SENA que automatiza el control de asistencia en ambientes de formación mediante reconocimiento facial. Identifica aprendices en tiempo real, registra entradas con precisión horaria y genera reportes que apoyan la gestión académica de instructores y administradores.
+# Todos los pendientes
+powershell -ExecutionPolicy Bypass -File .\scripts\reapply-after-rollback.ps1 -AllPending -AutoConfirm
+```
+
+## Politica De IDs De Changeset
+
+El formato del `id` del changeset debe seguir el criterio operativo definido por el equipo.
+
+- En este repo no se usa `logicalFilePath` estatico para changesets.
+- El `id` puede mantenerse en formato UUID si ese es el criterio operativo del equipo.
+- IDs semanticos son mas auditables (HU, modulo, intencion del cambio).
+- Para control de rollback, el mecanismo recomendado es `tag` + `rollback --tag` o rollback por ID usando el helper del repo.
+
+## Estado Esperado
+
+Cuando el flujo funciona correctamente, la base queda con:
+
+- extension `uuid-ossp`
+- schemas `security`, `inventory`, `bill`
+- tablas `role`, `user`, `form`, `category`, `product`, `inventory`, `bill`, `bill_item`
