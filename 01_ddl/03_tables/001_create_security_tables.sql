@@ -40,8 +40,8 @@ CREATE TABLE security.credential(
 );
 
 CREATE TABLE security.password_recovery (
-    id_password_recovery INT IDENTITY PRIMARY KEY,
-    id_user INT NOT NULL,
+    id_password_recovery UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id_user UUID NOT NULL,
     token VARCHAR(255),
     request_date TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     expiration_date TIMESTAMPTZ,
@@ -62,8 +62,8 @@ CREATE TABLE security.password_recovery (
 );
 
 CREATE TABLE security.user_session (
-    id_user_session INT IDENTITY PRIMARY KEY,
-    id_user INT NOT NULL,
+    id_user_session UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id_user UUID NOT NULL,
     start_date TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     end_date TIMESTAMPTZ,
     source_ip VARCHAR(50),
