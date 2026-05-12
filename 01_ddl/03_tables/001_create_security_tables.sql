@@ -38,3 +38,24 @@ CREATE TABLE security.credential(
         FOREIGN KEY (id_user) 
         REFERENCES security."user"(id_user)
 );
+
+CREATE TABLE security.user_session (
+    id_user_session INT IDENTITY PRIMARY KEY,
+    id_user INT NOT NULL,
+    start_date TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    end_date TIMESTAMPTZ,
+    source_ip VARCHAR(50),
+    session_status VARCHAR(20),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by VARCHAR(100),
+    updated_at TIMESTAMPTZ,
+    updated_by VARCHAR(100),
+    deleted_by VARCHAR(100),
+    deleted_at TIMESTAMPTZ,
+    CONSTRAINT fk_session_user
+        FOREIGN KEY (id_user) 
+        REFERENCES security."user"(id_user),
+    CONSTRAINT chk_session_status 
+        CHECK (session_status 
+        IN ('ACTIVE', 'INACTIVE'))
+);
