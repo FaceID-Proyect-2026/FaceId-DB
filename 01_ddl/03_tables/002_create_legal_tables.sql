@@ -1,5 +1,5 @@
 CREATE TABLE legal.terms_conditions (
-    id_terms INT IDENTITY(1,1) PRIMARY KEY,
+    id_terms UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     type VARCHAR(50) NOT NULL,
     terms_text TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -11,9 +11,9 @@ CREATE TABLE legal.terms_conditions (
 );
 
 CREATE TABLE legal.terms_acceptance (
-    id_acceptance INT IDENTITY(1,1) PRIMARY KEY,
-    id_user INT NOT NULL,
-    id_terms INT NOT NULL,
+    id_acceptance UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id_user UUID NOT NULL,
+    id_terms UUID NOT NULL,
     accepted VARCHAR(10) NOT NULL,
     acceptance_date TIMESTAMPTZ NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
