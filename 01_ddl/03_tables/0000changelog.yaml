@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 6bc8aa7a-4647-4e7a-a881-7bfe4cb7bf78
+      author: pemarival
+      labels: "BD-01-dev,ddl,base,security"
+      comment: Creates the baseline tables for the security module.
+      changes:
+        - sqlFile:
+            path: 001_create_security_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/001_create_security_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 2fd0afee-3023-47a9-98a8-96d3558058c5
+      author: pemarival
+      labels: "BD-01-dev,ddl,base,legal"
+      comment: Creates the baseline tables for the legal module.
+      changes:
+        - sqlFile:
+            path: 002_create_legal_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/002_create_legal_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

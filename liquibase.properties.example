@@ -1,0 +1,6 @@
+# Requires a local Liquibase installation with the PostgreSQL JDBC driver available.
+changeLogFile=changelog-master.yaml
+url=jdbc:postgresql://localhost:5439/facelit-db
+username=facelit_user
+password=facelit_password
+driver=org.postgresql.Driver
