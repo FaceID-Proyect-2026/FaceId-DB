@@ -29,3 +29,18 @@ databaseChangeLog:
             path: ../../05_rollbacks/01_ddl/03_tables/002_create_legal_tables.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+  - changeSet:
+      id: b1e918f2-8cea-4403-8255-21ff517fe3bd
+      author: pemarival
+      labels: "BD-01-dev,ddl,base,permissions"
+      comment: Creates the baseline tables for the permissions module.
+      changes:
+        - sqlFile:
+            path: 003_create_permissions_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/003_create_permissions_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
