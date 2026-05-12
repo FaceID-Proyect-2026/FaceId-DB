@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS legal.guardian CASCADE;
+DROP TABLE IF EXISTS legal.consent CASCADE;

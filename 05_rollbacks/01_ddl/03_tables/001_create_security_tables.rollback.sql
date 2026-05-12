@@ -1,4 +1,2 @@
 DROP TABLE IF EXISTS security."user" CASCADE;
 DROP TABLE IF EXISTS security.credential CASCADE;
-DROP TABLE IF EXISTS legal.guardian CASCADE;
-DROP TABLE IF EXISTS legal.consent CASCADE;

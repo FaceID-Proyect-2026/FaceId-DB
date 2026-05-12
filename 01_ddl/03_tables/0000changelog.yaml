@@ -14,3 +14,18 @@ databaseChangeLog:
             path: ../../05_rollbacks/01_ddl/03_tables/001_create_security_tables.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+  - changeSet:
+      id: 2fd0afee-3023-47a9-98a8-96d3558058c5
+      author: pemarival
+      labels: "BD-01-dev,ddl,base,legal"
+      comment: Creates the baseline tables for the legal module.
+      changes:
+        - sqlFile:
+            path: 002_create_legal_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/002_create_legal_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
