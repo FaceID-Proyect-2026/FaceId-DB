@@ -39,6 +39,28 @@ CREATE TABLE security.credential(
         REFERENCES security."user"(id_user)
 );
 
+CREATE TABLE security.password_recovery (
+    id_password_recovery INT IDENTITY PRIMARY KEY,
+    id_user INT NOT NULL,
+    token VARCHAR(255),
+    request_date TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    expiration_date TIMESTAMPTZ,
+    used BOOLEAN NOT NULL DEFAULT FALSE,
+    state VARCHAR(20),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by VARCHAR(100),
+    updated_at TIMESTAMPTZ,
+    updated_by VARCHAR(100),
+    deleted_by VARCHAR(100),
+    deleted_at TIMESTAMPTZ,
+    CONSTRAINT chk_password_recovery_status 
+        CHECK (state 
+        IN ('ACTIVE', 'INACTIVE')),
+    CONSTRAINT fk_password_recovery_user
+        FOREIGN KEY (id_user) 
+        REFERENCES security."user"(id_user)
+);
+
 CREATE TABLE security.user_session (
     id_user_session INT IDENTITY PRIMARY KEY,
     id_user INT NOT NULL,
