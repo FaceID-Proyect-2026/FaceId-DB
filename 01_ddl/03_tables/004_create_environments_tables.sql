@@ -1,6 +1,5 @@
 CREATE TABLE environments.environment (
     id_environment UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    environment_code VARCHAR(50),
     environment_name VARCHAR(100),
     capacity INT,
     status VARCHAR(20),
