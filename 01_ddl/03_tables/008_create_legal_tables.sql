@@ -1,4 +1,3 @@
--- GUARDIAN
 CREATE TABLE legal.guardian (
     id_guardian UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     full_name VARCHAR(150) NOT NULL,
@@ -12,7 +11,6 @@ CREATE TABLE legal.guardian (
     deleted_at TIMESTAMPTZ
 );
 
--- CONSENT
 CREATE TABLE legal.consent (
     id_consent UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_users UUID NOT NULL,
@@ -30,7 +28,6 @@ CREATE TABLE legal.consent (
         CHECK (consent_status IN ('PENDING','ACCEPTED','REJECTED'))
 );
 
--- CONSENT VERIFICATION
 CREATE TABLE legal.consent_verification (
     id_consent_verification UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_consent UUID NOT NULL,
@@ -45,7 +42,6 @@ CREATE TABLE legal.consent_verification (
     deleted_at TIMESTAMPTZ
 );
 
--- TERMS ACCEPTANCE
 CREATE TABLE legal.terms_acceptance (
     id_acceptance UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_users UUID NOT NULL,
