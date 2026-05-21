@@ -1,0 +1,2 @@
+ALTER TABLE environments.record_environment
+DROP CONSTRAINT IF EXISTS fk_record_environment_environment;
