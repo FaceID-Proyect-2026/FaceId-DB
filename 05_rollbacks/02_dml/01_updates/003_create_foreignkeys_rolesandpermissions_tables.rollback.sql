@@ -1,0 +1,11 @@
+ALTER TABLE rolesandpermissions.role_permission
+DROP CONSTRAINT fk_role_permission_permission;
+
+ALTER TABLE rolesandpermissions.role_permission
+DROP CONSTRAINT fk_role_permission_role;
+
+ALTER TABLE rolesandpermissions.user_role
+DROP CONSTRAINT fk_user_role_role;
+
+ALTER TABLE rolesandpermissions.user_role
+DROP CONSTRAINT fk_user_role_user;
