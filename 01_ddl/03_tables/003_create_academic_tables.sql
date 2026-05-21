@@ -1,8 +1,9 @@
 CREATE TABLE academic.program (
     id_program UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     program_name VARCHAR(100) NOT NULL UNIQUE,
-    estado VARCHAR(20)
-        CHECK (estado IN ('ACTIVE','INACTIVE'))
+    state VARCHAR(20),
+    CONSTRAINT chk_program_state
+        CHECK (state IN ('ACTIVE','INACTIVE'))
 );
 
 CREATE TABLE academic.chip (
