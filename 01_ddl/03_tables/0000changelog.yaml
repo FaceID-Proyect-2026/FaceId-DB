@@ -36,11 +36,11 @@ databaseChangeLog:
       comment: Creates the baseline tables for the permissions module.
       changes:
         - sqlFile:
-            path: 003_create_permissions_tables.sql
+            path: 003_create_rolesandpermissions_tables.sql
             relativeToChangelogFile: true
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_tables/003_create_permissions_tables.rollback.sql
+            path: ../../05_rollbacks/01_ddl/03_tables/003_create_rolesandpermissions_tables.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
