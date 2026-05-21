@@ -30,6 +30,21 @@ databaseChangeLog:
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
+      id: 3d433cff-a1ec-43be-a55d-40441f1b5ffd
+      author: pemarival
+      labels: "BD-01-dev,ddl,base,legal"
+      comment: Creates the baseline tables for the legal module.
+      changes:
+        - sqlFile:
+            path: 003_create_academic_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/003_create_academic_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false            
+  - changeSet:
       id: 2fd0afee-3023-47a9-98a8-96d3558058c5
       author: pemarival
       labels: "BD-01-dev,ddl,base,legal"
