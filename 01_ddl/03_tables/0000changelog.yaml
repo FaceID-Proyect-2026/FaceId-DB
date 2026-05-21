@@ -17,8 +17,8 @@ databaseChangeLog:
   - changeSet:
       id: b1e918f2-8cea-4403-8255-21ff517fe3bd
       author: pemarival
-      labels: "BD-01-dev,ddl,base,permissions"
-      comment: Creates the baseline tables for the permissions module.
+      labels: "BD-01-dev,ddl,base,rolesandpermissions"
+      comment: Creates the baseline tables for the roles and permissions module.
       changes:
         - sqlFile:
             path: 002_create_rolesandpermissions_tables.sql
@@ -32,8 +32,8 @@ databaseChangeLog:
   - changeSet:
       id: 3d433cff-a1ec-43be-a55d-40441f1b5ffd
       author: pemarival
-      labels: "BD-01-dev,ddl,base,legal"
-      comment: Creates the baseline tables for the legal module.
+      labels: "BD-01-dev,ddl,base,academic"
+      comment: Creates the baseline tables for the academic module.
       changes:
         - sqlFile:
             path: 003_create_academic_tables.sql
