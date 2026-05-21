@@ -8,6 +8,7 @@ CREATE TABLE academic.program (
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
     deleted_at TIMESTAMPTZ,
+    CONSTRAINT chk_program_state
         CHECK (state IN ('ACTIVE','INACTIVE'))
 );
 

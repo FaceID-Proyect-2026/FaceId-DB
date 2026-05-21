@@ -45,6 +45,21 @@ databaseChangeLog:
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
+      id: e2902862-8830-4fb5-aed3-87143d2de417
+      author: pemarival
+      labels: "BD-01-dev,dml,foreignkeys,environments"
+      comment: "Adds foreign keys to the environments tables."
+      changes:
+        - sqlFile:
+            path: 004_create_foreignkeys_environments_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_updates/004_create_foreignkeys_environments_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
       id: 3b48c1e3-4bd9-494d-b60b-6f82273d325a
       author: pemarival
       labels: "BD-01-dev,dml,foreignkeys,legal"

@@ -43,7 +43,22 @@ databaseChangeLog:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/03_tables/003_create_academic_tables.rollback.sql
             relativeToChangelogFile: true
-            stripComments: false            
+            stripComments: false   
+  - changeSet:
+      id: ad6e0e60-20ad-47b5-878d-8932dfaf3339
+      author: pemarival
+      labels: "BD-01-dev,ddl,base, environments"
+      comment: Creates the baseline tables for the environments module.
+      changes:
+        - sqlFile:
+            path: 004_create_environments_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/004_create_environments_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false         
   - changeSet:
       id: 2fd0afee-3023-47a9-98a8-96d3558058c5
       author: pemarival
