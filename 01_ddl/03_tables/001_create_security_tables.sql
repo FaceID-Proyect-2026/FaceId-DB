@@ -22,6 +22,7 @@ CREATE TABLE security.users(
     birth_date DATE NOT NULL,
     account_status VARCHAR(20) NOT NULL DEFAULT 'PENDING_CONSENT',
     number_document VARCHAR(50) NOT NULL UNIQUE,
+    email_verification BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     created_by VARCHAR(100),
     updated_at TIMESTAMPTZ,
