@@ -1,7 +1,7 @@
 ALTER TABLE roleandpermission.user_role
 ADD CONSTRAINT fk_user_role_user
-FOREIGN KEY (id_users)
-REFERENCES security.user_app (id_users);
+FOREIGN KEY (id_user_app)
+REFERENCES security.user_app (id_user_app);
 
 ALTER TABLE roleandpermission.user_role
 ADD CONSTRAINT fk_user_role_role

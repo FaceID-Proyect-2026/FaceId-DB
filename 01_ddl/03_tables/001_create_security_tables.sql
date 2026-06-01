@@ -15,7 +15,7 @@ CREATE TABLE security.type_document(
 );
 
 CREATE TABLE security.user_app(
-    id_users UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id_user_app UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_type_document UUID NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE security.user_app(
 
 CREATE TABLE security.credential(
     id_credential UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    id_users UUID NOT NULL,
+    id_user_app UUID NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     credential_status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
@@ -54,7 +54,7 @@ CREATE TABLE security.credential(
 
 CREATE TABLE security.email_verification (
     id_email_verification UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    id_users UUID NOT NULL,
+    id_user_app UUID NOT NULL,
     code VARCHAR(6) NOT NULL,
     expires_at TIMESTAMPTZ NOT NULL,
     used BOOLEAN NOT NULL DEFAULT FALSE,
@@ -70,7 +70,7 @@ CREATE TABLE security.email_verification (
 
 CREATE TABLE security.password_recovery (
     id_password_recovery UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    id_users UUID NOT NULL,
+    id_user_app UUID NOT NULL,
     token VARCHAR(255) NOT NULL,
     request_date TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     expiration_date TIMESTAMPTZ NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE security.password_recovery (
 
 CREATE TABLE security.user_session (
     id_user_session UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    id_users UUID NOT NULL,
+    id_user_app UUID NOT NULL,
     start_date TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     end_date TIMESTAMPTZ,
     source_ip INET,
@@ -109,7 +109,7 @@ CREATE TABLE security.user_session (
 
 CREATE TABLE security.user_configuration (
     id_user_configuration UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    id_users UUID NOT NULL,
+    id_user_app UUID NOT NULL,
     configuration_name VARCHAR(100) NOT NULL,
     description VARCHAR(255),
     notifications_active BOOLEAN NOT NULL DEFAULT TRUE,
