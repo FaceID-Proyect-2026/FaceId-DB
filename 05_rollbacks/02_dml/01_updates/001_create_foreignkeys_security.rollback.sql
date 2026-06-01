@@ -13,5 +13,5 @@ DROP CONSTRAINT fk_email_verification_users;
 ALTER TABLE security.credential
 DROP CONSTRAINT fk_credential_users;
 
-ALTER TABLE security.users
+ALTER TABLE security.user_app
 DROP CONSTRAINT fk_users_type_document;

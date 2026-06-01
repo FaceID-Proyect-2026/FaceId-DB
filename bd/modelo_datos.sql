@@ -243,7 +243,7 @@ CREATE TABLE Rol (
         CHECK (nombreRol IN ('APRENDIZ','INSTRUCTOR','ADMINISTRADOR'))
 );
 
-CREATE TABLE Permisos (
+CREATE TABLE Permiso (
     id_Permiso UNIQUEIDENTIFIER
         PRIMARY KEY DEFAULT NEWID(),
 
@@ -279,7 +279,7 @@ CREATE TABLE Rol_Permiso (
         REFERENCES Rol(id_Rol),
 
     FOREIGN KEY (id_Permiso)
-        REFERENCES Permisos(id_Permiso)
+        REFERENCES Permiso(id_Permiso)
 );
 
 
@@ -580,7 +580,7 @@ CREATE TABLE BitacoraBiometrica (
    DOMINIO NOTIFICACIONES
 ========================= */
 
-CREATE TABLE Notificaciones (
+CREATE TABLE Notificacion (
     id_Notificacion UNIQUEIDENTIFIER
         PRIMARY KEY DEFAULT NEWID(),
 
@@ -631,7 +631,7 @@ CREATE TABLE EnvioCorreo (
     intentos INT,
 
     FOREIGN KEY (id_Notificacion)
-        REFERENCES Notificaciones(id_Notificacion)
+        REFERENCES Notificacion(id_Notificacion)
 );
 
 
@@ -643,7 +643,7 @@ CREATE TABLE EnvioCorreo (
    ACEPTACION TERMINOS
 ========================================================= */
 
-CREATE TABLE AceptacionTerminos (
+CREATE TABLE AceptacionTermino (
     id_Aceptacion UNIQUEIDENTIFIER
         PRIMARY KEY DEFAULT NEWID(),
 

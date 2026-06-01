@@ -14,7 +14,7 @@ CREATE TABLE security.type_document(
         CHECK (abbreviation IN ('CC', 'CE', 'TI', 'PAS'))
 );
 
-CREATE TABLE security.users(
+CREATE TABLE security.user_app(
     id_users UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_type_document UUID NOT NULL,
     first_name VARCHAR(50) NOT NULL,
