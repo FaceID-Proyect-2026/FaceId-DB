@@ -13,7 +13,7 @@ CREATE TABLE legal.guardian (
 
 CREATE TABLE legal.consent (
     id_consent UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    id_users UUID NOT NULL,
+    id_user_app UUID NOT NULL,
     id_guardian UUID NULL,
     consent_status VARCHAR(20) NOT NULL,
     application_date TIMESTAMPTZ NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE legal.consent_verification (
 
 CREATE TABLE legal.terms_acceptance (
     id_acceptance UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    id_users UUID NOT NULL,
+    id_user_app UUID NOT NULL,
     accepted BOOLEAN NOT NULL,
     origin_ip INET,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),

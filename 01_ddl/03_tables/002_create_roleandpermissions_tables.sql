@@ -25,7 +25,7 @@ CREATE TABLE roleandpermission.permission (
 
 CREATE TABLE roleandpermission.user_role (
     id_user_role UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    id_users UUID NOT NULL,
+    id_user_app UUID NOT NULL,
     id_role UUID NOT NULL,
     assignment_date DATE,
     assigned_at TIMESTAMPTZ DEFAULT NOW(),
@@ -35,7 +35,7 @@ CREATE TABLE roleandpermission.user_role (
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
     deleted_at TIMESTAMPTZ,
-    CONSTRAINT uq_user_role UNIQUE (id_users, id_role)
+    CONSTRAINT uq_user_role UNIQUE (id_user_app, id_role)
 );
 
 CREATE TABLE roleandpermission.role_permission (
