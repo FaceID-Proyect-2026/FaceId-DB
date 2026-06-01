@@ -1,4 +1,4 @@
-CREATE TABLE rolesandpermissions.role (
+CREATE TABLE roleandpermission.role (
     id_role UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name_role VARCHAR(20) NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -11,7 +11,7 @@ CREATE TABLE rolesandpermissions.role (
         CHECK (name_role IN ('APPRENTICE','INSTRUCTOR','ADMINISTRATOR'))
 );
 
-CREATE TABLE rolesandpermissions.permission (
+CREATE TABLE roleandpermission.permission (
     id_permission UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name_permission VARCHAR(100) NOT NULL,
     description VARCHAR(255),
@@ -23,7 +23,7 @@ CREATE TABLE rolesandpermissions.permission (
     deleted_at TIMESTAMPTZ
 );
 
-CREATE TABLE rolesandpermissions.user_role (
+CREATE TABLE roleandpermission.user_role (
     id_user_role UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_users UUID NOT NULL,
     id_role UUID NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE rolesandpermissions.user_role (
     CONSTRAINT uq_user_role UNIQUE (id_users, id_role)
 );
 
-CREATE TABLE rolesandpermissions.role_permission (
+CREATE TABLE roleandpermission.role_permission (
     id_role_permission UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_role UUID NOT NULL,
     id_permission UUID NOT NULL,

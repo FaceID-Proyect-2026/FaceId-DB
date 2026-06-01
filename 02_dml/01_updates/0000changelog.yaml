@@ -17,16 +17,16 @@ databaseChangeLog:
   - changeSet:
       id: 84812250-7818-4570-9d7c-56d94f287470
       author: pemarival
-      labels: "BD-01-dev,dml,foreignkeys,rolesandpermissions"
-      comment: "Adds foreign keys to the rolesandpermissions tables."
+      labels: "BD-01-dev,dml,foreignkeys,roleandpermission"
+      comment: "Adds foreign keys to the roleandpermission tables."
       changes:
         - sqlFile:
-            path: 002_create_foreignkeys_rolesandpermissions_tables.sql
+            path: 002_create_foreignkeys_roleandpermissions_tables.sql
             relativeToChangelogFile: true
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/02_dml/01_updates/002_create_foreignkeys_rolesandpermissions_tables.rollback.sql
+            path: ../../05_rollbacks/02_dml/01_updates/002_create_foreignkeys_roleandpermissions_tables.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
@@ -47,16 +47,16 @@ databaseChangeLog:
   - changeSet:
       id: e2902862-8830-4fb5-aed3-87143d2de417
       author: pemarival
-      labels: "BD-01-dev,dml,foreignkeys,environments"
-      comment: "Adds foreign keys to the environments tables."
+      labels: "BD-01-dev,dml,foreignkeys,environment"
+      comment: "Adds foreign keys to the environment tables."
       changes:
         - sqlFile:
-            path: 004_create_foreignkeys_environments_tables.sql
+            path: 004_create_foreignkeys_environment_tables.sql
             relativeToChangelogFile: true
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/02_dml/01_updates/004_create_foreignkeys_environments_tables.rollback.sql
+            path: ../../05_rollbacks/02_dml/01_updates/004_create_foreignkeys_environment_tables.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:

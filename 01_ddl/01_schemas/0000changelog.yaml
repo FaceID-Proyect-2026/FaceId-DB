@@ -3,7 +3,7 @@ databaseChangeLog:
       id: 75a51c2b-c702-48dd-81d6-8b0ddc8032c1
       author: pemarival
       labels: "BD-01-dev,ddl,base,schema"
-      comment: "Creates the baseline schemas: security, permissions, academic, environments, schedules, facialrecognition, notifications andlegal."
+      comment: "Creates the baseline schemas: security, rolesandpermission, academic, environment, schedule, facialrecognition, notification and legal."
       changes:
         - sqlFile:
             path: 001_create_schemas.sql

@@ -1,4 +1,4 @@
-CREATE TABLE environments.environment (
+CREATE TABLE environment.environment (
     id_environment UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     environment_name VARCHAR(100),
     capacity INT,
@@ -13,7 +13,7 @@ CREATE TABLE environments.environment (
         CHECK (status IN ('PENDING','ACCEPTED','REJECTED'))   
 ); 
 
-CREATE TABLE environments.record_environment (
+CREATE TABLE environment.record_environment (
     id_record_environment UUID NOT NULL PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_environment UUID NOT NULL,
     assignment_date TIMESTAMPTZ NOT NULL,
