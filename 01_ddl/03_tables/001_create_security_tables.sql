@@ -93,7 +93,6 @@ CREATE TABLE security.user_session (
     id_user_app UUID NOT NULL,
     start_date TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     end_date TIMESTAMPTZ,
-    source_ip INET,
     session_status VARCHAR(20) NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     created_by VARCHAR(100),
