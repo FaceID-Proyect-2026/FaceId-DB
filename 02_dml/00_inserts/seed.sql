@@ -25,13 +25,14 @@ VALUES
     (uuid_generate_v4(), 'INSTRUCTOR', NOW()),
     (uuid_generate_v4(), 'APPRENTICE', NOW());
 
-    INSERT INTO roleandpermission.permission (
+INSERT INTO roleandpermission.permission (
     id_permission,
     name_permission,
     description,
     created_at
 )
 VALUES
+(uuid_generate_v4(), 'MANAGE_SYSTEM', 'Gestionar sistema', NOW()),
 (uuid_generate_v4(), 'VIEW_OWN_PROFILE', 'Ver perfil propio', NOW()),
 (uuid_generate_v4(), 'EDIT_OWN_PROFILE', 'Editar perfil propio', NOW()),
 (uuid_generate_v4(), 'VIEW_OWN_ATTENDANCE', 'Ver asistencia propia', NOW()),
@@ -42,6 +43,15 @@ VALUES
 (uuid_generate_v4(), 'MANAGE_ENVIRONMENTS', 'Gestionar ambientes', NOW()),
 (uuid_generate_v4(), 'MANAGE_FICHAS', 'Gestionar fichas', NOW()),
 (uuid_generate_v4(), 'MANAGE_TRAINING_PROGRAMS', 'Gestionar programas de formacion', NOW());
+
+INSERT INTO roleandpermission.role_permission (id_role_permission, id_role, id_permission, assignment_date, assigned_at, created_at)
+SELECT uuid_generate_v4(), r.id_role, p.id_permission, NOW(), NOW(), NOW()
+FROM roleandpermission.role r
+CROSS JOIN roleandpermission.permission p
+WHERE r.name_role = 'ADMINISTRATOR'
+AND p.name_permission IN (
+    'MANAGE_SYSTEM'
+);
 
 INSERT INTO roleandpermission.role_permission (id_role_permission, id_role, id_permission, assignment_date, assigned_at, created_at)
 SELECT uuid_generate_v4(), r.id_role, p.id_permission, NOW(), NOW(), NOW()
