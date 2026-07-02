@@ -8,7 +8,7 @@ CREATE TABLE roleandpermission.role (
     deleted_by VARCHAR(100),
     deleted_at TIMESTAMPTZ,
     CONSTRAINT chk_name_role 
-        CHECK (name_role IN ('APPRENTICE','INSTRUCTOR','ADMINISTRATOR'))
+        CHECK (name_role IN ('APPRENTICE','INSTRUCTOR', 'COORDINATOR','ADMINISTRATOR'))
 );
 
 CREATE TABLE roleandpermission.permission (
