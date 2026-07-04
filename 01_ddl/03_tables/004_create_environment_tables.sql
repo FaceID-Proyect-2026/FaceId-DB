@@ -10,7 +10,7 @@ CREATE TABLE environment.environment (
     deleted_by VARCHAR(100),
     deleted_at TIMESTAMPTZ, 
     CONSTRAINT chk_environment_status
-        CHECK (status IN ('PENDING','ACCEPTED','REJECTED'))   
+        CHECK (status IN ('ACTIVE','INACTIVE'))   
 ); 
 
 CREATE TABLE environment.record_environment (
