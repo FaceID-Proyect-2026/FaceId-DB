@@ -74,3 +74,18 @@ databaseChangeLog:
             path: ../../05_rollbacks/02_dml/01_updates/008_create_foreignkeys_legal_tables.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+  - changeSet:
+      id: e4f36b70-3c58-4ed7-85f8-36dcf72b2372
+      author: codex
+      labels: "BD-01-dev,dml,foreignkeys,face-recognition"
+      comment: "Adds foreign keys to the face recognition tables."
+      changes:
+        - sqlFile:
+            path: 009_create_foreignkeys_face_recognition.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_updates/009_create_foreignkeys_face_recognition.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
