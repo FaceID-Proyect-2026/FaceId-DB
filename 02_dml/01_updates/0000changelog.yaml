@@ -60,7 +60,7 @@ databaseChangeLog:
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
-      id: 5c63b566-c5a6-4e37-87ab-c910448d9410
+      id: b35e4a2b-812d-4326-8be7-52fead55e996
       author: pemarival
       labels: "BD-01-dev,dml,foreignkeys,schedule"
       comment: "Adds foreign keys to the schedule tables."

@@ -58,6 +58,21 @@ databaseChangeLog:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/03_tables/004_create_environment_tables.rollback.sql
             relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 91d9d811-cf37-4360-921d-dd2279dedfaf
+      author: pemarival
+      labels: "BD-01-dev,ddl,base,schedule"
+      comment: Creates the baseline tables for the schedule module.
+      changes:
+        - sqlFile:
+            path: 005_create_schedule_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/005_create_schedule_tables.rollback.sql
+            relativeToChangelogFile: true
             stripComments: false         
   - changeSet:
       id: 2fd0afee-3023-47a9-98a8-96d3558058c5
