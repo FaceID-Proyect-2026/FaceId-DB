@@ -74,3 +74,18 @@ databaseChangeLog:
             path: ../../05_rollbacks/01_ddl/03_tables/008_create_legal_tables.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+  - changeSet:
+      id: f7cd7280-66fe-4248-b313-088c959d6d71
+      author: codex
+      labels: "BD-01-dev,ddl,face-recognition"
+      comment: Creates the table that stores active facial embeddings per user.
+      changes:
+        - sqlFile:
+            path: 009_create_face_recognition_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/009_create_face_recognition_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
