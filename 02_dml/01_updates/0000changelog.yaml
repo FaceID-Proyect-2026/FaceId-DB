@@ -60,6 +60,21 @@ databaseChangeLog:
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
+      id: b35e4a2b-812d-4326-8be7-52fead55e996
+      author: pemarival
+      labels: "BD-01-dev,dml,foreignkeys,schedule"
+      comment: "Adds foreign keys to the schedule tables."
+      changes:
+        - sqlFile:
+            path: 005_create_foreignkeys_schedule_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_updates/005_create_foreignkeys_schedule_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
       id: 3b48c1e3-4bd9-494d-b60b-6f82273d325a
       author: pemarival
       labels: "BD-01-dev,dml,foreignkeys,legal"
