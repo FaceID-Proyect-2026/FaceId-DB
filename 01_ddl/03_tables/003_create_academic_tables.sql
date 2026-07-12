@@ -32,6 +32,7 @@ CREATE TABLE academic.chip (
 CREATE TABLE academic.user_chip (
     id_user_chip UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_user_app UUID NOT NULL,
+    id_chip UUID NOT NULL,
     assignment_date DATE NOT NULL,
     state VARCHAR(20),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
