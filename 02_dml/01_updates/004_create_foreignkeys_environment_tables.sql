@@ -4,9 +4,6 @@ FOREIGN KEY (id_environment)
 REFERENCES environment.environment (id_environment);
 
 ALTER TABLE environment.record_environment
-ADD COLUMN id_schedule UUID NOT NULL;
-
-ALTER TABLE environment.record_environment
 ADD CONSTRAINT fk_record_environment_schedule
 FOREIGN KEY (id_schedule)
 REFERENCES schedule.schedule(id_schedule);
