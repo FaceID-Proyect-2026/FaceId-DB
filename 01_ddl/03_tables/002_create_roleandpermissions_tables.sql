@@ -1,14 +1,12 @@
 CREATE TABLE roleandpermission.role (
     id_role UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    name_role VARCHAR(20) NOT NULL,
+    name_role roleandpermission.role_name_type NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     created_by VARCHAR(100),
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_name_role 
-        CHECK (name_role IN ('APPRENTICE','INSTRUCTOR', 'COORDINATOR','ADMINISTRATOR'))
+    deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE roleandpermission.permission (

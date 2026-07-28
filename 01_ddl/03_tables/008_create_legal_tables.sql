@@ -15,7 +15,7 @@ CREATE TABLE legal.consent (
     id_consent UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_user_app UUID NOT NULL,
     id_guardian UUID NULL,
-    consent_status VARCHAR(20) NOT NULL,
+    consent_status legal.consent_status_type NOT NULL,
     application_date TIMESTAMPTZ NOT NULL,
     response_date TIMESTAMPTZ NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -23,9 +23,7 @@ CREATE TABLE legal.consent (
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_consent_status
-        CHECK (consent_status IN ('PENDING','ACCEPTED','REJECTED'))
+    deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE legal.consent_verification (
