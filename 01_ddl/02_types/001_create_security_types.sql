@@ -43,5 +43,5 @@ CREATE TYPE security.language_type AS ENUM (
     'ES',
     'EN',
     'DE',
-    'PT'
+    'FR'
 );
