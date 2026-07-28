@@ -1,7 +1,3 @@
--- =========================
--- ENUM TYPES
--- =========================
-
 CREATE TYPE security.type_document_name_type AS ENUM (
     'CITIZENSHIP CARD',
     'FOREIGNER IDENTITY CARD',
@@ -29,12 +25,7 @@ CREATE TYPE security.credential_status_type AS ENUM (
     'BLOCKED'
 );
 
-CREATE TYPE security.password_recovery_state_type AS ENUM (
-    'ACTIVE',
-    'INACTIVE'
-);
-
-CREATE TYPE security.session_status_type AS ENUM (
+CREATE TYPE security.status_type AS ENUM (
     'ACTIVE',
     'INACTIVE'
 );

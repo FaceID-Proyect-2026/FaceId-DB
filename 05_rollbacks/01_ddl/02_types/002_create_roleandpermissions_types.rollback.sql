@@ -1,0 +1,1 @@
+DROP TYPE IF EXISTS roleandpermission.role_name_type;
