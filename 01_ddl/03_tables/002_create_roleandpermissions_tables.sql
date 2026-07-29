@@ -1,6 +1,6 @@
 CREATE TABLE roleandpermission.role (
     id_role UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    name_role roleandpermission.role_name_type NOT NULL,
+    name_role VARCHAR(20) NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     created_by VARCHAR(100),
     updated_at TIMESTAMPTZ,
