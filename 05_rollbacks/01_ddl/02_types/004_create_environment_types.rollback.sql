@@ -1,1 +1,0 @@
-DROP TYPE IF EXISTS environment.status_type;
