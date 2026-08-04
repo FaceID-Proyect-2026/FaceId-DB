@@ -73,7 +73,22 @@ databaseChangeLog:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/03_tables/005_create_schedule_tables.rollback.sql
             relativeToChangelogFile: true
-            stripComments: false         
+            stripComments: false       
+  - changeSet:
+      id: 7c1f37b0-8b49-4d26-b9e7-d4f7a2a1e3d9
+      author: pemarival
+      labels: "BD-01-dev,ddl,base,face-recognition"
+      comment: Creates the baseline tables for the face recognition module.
+      changes:
+        - sqlFile:
+            path: 006_create_face_recognition_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/006_create_face_recognition_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
   - changeSet:
       id: 2fd0afee-3023-47a9-98a8-96d3558058c5
       author: pemarival
@@ -87,20 +102,5 @@ databaseChangeLog:
       rollback:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/03_tables/008_create_legal_tables.rollback.sql
-            relativeToChangelogFile: true
-            stripComments: false
-  - changeSet:
-      id: f7cd7280-66fe-4248-b313-088c959d6d71
-      author: codex
-      labels: "BD-01-dev,ddl,face-recognition"
-      comment: Creates the table that stores active facial embeddings per user.
-      changes:
-        - sqlFile:
-            path: 009_create_face_recognition_tables.sql
-            relativeToChangelogFile: true
-            stripComments: false
-      rollback:
-        - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_tables/009_create_face_recognition_tables.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
