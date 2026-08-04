@@ -1,8 +1,24 @@
 databaseChangeLog:
   - changeSet:
+      id: 65fa5d7d0-8fd0-4f4d-8d8d-2f47f86f0c7f
+      author: pemarival
+      labels: "HU-06-dev,ddl,base,face-recognition"
+      comment: Creates the baseline tables for the face recognition module.
+      changes:
+        - sqlFile:
+            path: 006_create_face_recognition_types.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/02_types/006_create_face_recognition_types.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+databaseChangeLog:
+  - changeSet:
       id: 5f3d5a1d-7de4-4e95-81e6-0d1cda2f5c4d
       author: pemarival
-      labels: "BD-07-dev,ddl,base,notification"
+      labels: "HU-07-dev,ddl,base,notification"
       comment: Creates the baseline types for the notification module.
       changes:
         - sqlFile:

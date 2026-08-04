@@ -23,9 +23,7 @@ CREATE TABLE legal.consent (
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_consent_status
-        CHECK (consent_status IN ('PENDING','ACCEPTED','REJECTED'))
+    deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE legal.consent_verification (

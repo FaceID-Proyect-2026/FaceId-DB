@@ -11,9 +11,7 @@ CREATE TABLE schedule.schedule (
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_schedule_status
-        CHECK (status IN ('ACTIVE','INACTIVE'))
+    deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE schedule.schedule_instructor (
@@ -26,9 +24,7 @@ CREATE TABLE schedule.schedule_instructor (
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_schedule_instructor_status
-        CHECK (status IN ('ACTIVE','INACTIVE'))
+    deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE schedule.schedule_exception (
@@ -44,7 +40,5 @@ CREATE TABLE schedule.schedule_exception (
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_schedule_exception_status
-        CHECK (status IN ('ACTIVE','INACTIVE'))
+    deleted_at TIMESTAMPTZ
 );
