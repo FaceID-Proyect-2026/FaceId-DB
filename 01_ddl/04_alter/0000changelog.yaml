@@ -75,6 +75,21 @@ databaseChangeLog:
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
+      id: 2a9bf5bb-68ce-44bc-b9a9-2e7861f8f29d
+      author: pemarival
+      labels: "BD-01-dev,ddl,foreignkeys,face-recognition"
+      comment: "Adds foreign keys to the face recognition tables."
+      changes:
+        - sqlFile:
+            path: 006_create_foreignkeys_face_recognition.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/006_create_foreignkeys_face_recognition_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
       id: 3b48c1e3-4bd9-494d-b60b-6f82273d325a
       author: pemarival
       labels: "BD-01-dev,dml,foreignkeys,legal"
@@ -87,20 +102,5 @@ databaseChangeLog:
       rollback:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/04_alter/008_create_foreignkeys_legal_tables.rollback.sql
-            relativeToChangelogFile: true
-            stripComments: false
-  - changeSet:
-      id: e4f36b70-3c58-4ed7-85f8-36dcf72b2372
-      author: codex
-      labels: "BD-01-dev,dml,foreignkeys,face-recognition"
-      comment: "Adds foreign keys to the face recognition tables."
-      changes:
-        - sqlFile:
-            path: 009_create_foreignkeys_face_recognition.sql
-            relativeToChangelogFile: true
-            stripComments: false
-      rollback:
-        - sqlFile:
-            path: ../../05_rollbacks/01_ddl/04_alter/009_create_foreignkeys_face_recognition.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
