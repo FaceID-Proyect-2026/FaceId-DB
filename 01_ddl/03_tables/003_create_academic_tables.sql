@@ -7,9 +7,7 @@ CREATE TABLE academic.program (
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_program_state
-        CHECK (state IN ('ACTIVE','INACTIVE'))
+    deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE academic.chip (
@@ -24,9 +22,7 @@ CREATE TABLE academic.chip (
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_state_chip
-        CHECK (state IN ('ACTIVE','INACTIVE'))
+    deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE academic.user_chip (
@@ -40,7 +36,5 @@ CREATE TABLE academic.user_chip (
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_state_user_chip
-        CHECK (state IN ('ACTIVE','INACTIVE'))
+    deleted_at TIMESTAMPTZ
 );

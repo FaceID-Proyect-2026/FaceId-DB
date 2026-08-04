@@ -1,10 +1,8 @@
--- schedule
 ALTER TABLE schedule.schedule
 ADD CONSTRAINT fk_schedule_chip
 FOREIGN KEY (id_chip)
 REFERENCES academic.chip(id_chip);
 
--- instructor_schedule
 ALTER TABLE schedule.schedule_instructor
 ADD CONSTRAINT fk_instructor_schedule_schedule
 FOREIGN KEY (id_schedule)
@@ -15,7 +13,6 @@ ADD CONSTRAINT fk_instructor_schedule_instructor
 FOREIGN KEY (id_user_app)
 REFERENCES security.user_app(id_user_app);
 
--- schedule_exception
 ALTER TABLE schedule.schedule_exception
 ADD CONSTRAINT fk_schedule_exception_schedule
 FOREIGN KEY (id_schedule)

@@ -1,17 +1,13 @@
 CREATE TABLE security.type_document(
     id_type_document UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR(100) NOT NULL,
-    abbreviation VARCHAR(20) NOT NULL UNIQUE,
+    abbreviation VARCHAR(10) NOT NULL UNIQUE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     created_by VARCHAR(100),
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_type_document_name
-        CHECK (name IN ('CITIZENSHIP CARD', 'FOREIGNER IDENTITY CARD', 'IDENTITY CARD', 'PASSPORT')),
-    CONSTRAINT chk_type_document_abbreviation
-        CHECK (abbreviation IN ('CC', 'CE', 'TI', 'PAS'))
+    deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE security.user_app(
@@ -28,9 +24,7 @@ CREATE TABLE security.user_app(
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_account_status 
-        CHECK (account_status IN ('ACTIVE', 'INACTIVE', 'PENDING_CONSENT', 'BLOCKED'))
+    deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE security.credential(
@@ -46,8 +40,6 @@ CREATE TABLE security.credential(
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
     deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_credential_status 
-        CHECK (credential_status IN ('ACTIVE', 'INACTIVE', 'BLOCKED')),
     CONSTRAINT chk_failed_attempts_non_negative
         CHECK (failed_attempts >= 0)
 );
@@ -82,8 +74,6 @@ CREATE TABLE security.password_recovery (
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
     deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_password_recovery_status 
-        CHECK (state IN ('ACTIVE', 'INACTIVE')),
     CONSTRAINT chk_password_recovery_expiration_date
         CHECK (expiration_date > request_date)
 );
@@ -100,8 +90,6 @@ CREATE TABLE security.user_session (
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
     deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_session_status 
-        CHECK (session_status IN ('ACTIVE', 'INACTIVE')),
     CONSTRAINT chk_session_start_date
         CHECK (end_date IS NULL OR end_date >= start_date)
 );
@@ -120,7 +108,5 @@ CREATE TABLE security.user_configuration (
     updated_at TIMESTAMPTZ,
     updated_by VARCHAR(100),
     deleted_by VARCHAR(100),
-    deleted_at TIMESTAMPTZ,
-    CONSTRAINT chk_language 
-        CHECK (language IN ('ES','EN','DE','PT'))
+    deleted_at TIMESTAMPTZ
 );

@@ -20,32 +20,37 @@ databaseChangeLog:
       contextFilter: 01_ddl
       labels: 03_tables
   - include:
-      file: 04_views/0000changelog.yaml
+      file: 04_alter/0000changelog.yaml
       relativeToChangelogFile: true
       contextFilter: 01_ddl
-      labels: 04_views
+      labels: 04_alter
   - include:
-      file: 05_materialized_views/0000changelog.yaml
+      file: 05_views/0000changelog.yaml
       relativeToChangelogFile: true
       contextFilter: 01_ddl
-      labels: 05_materialized_views
+      labels: 05_views
   - include:
-      file: 06_functions/0000changelog.yaml
+      file: 06_materialized_views/0000changelog.yaml
       relativeToChangelogFile: true
       contextFilter: 01_ddl
-      labels: 06_functions
+      labels: 06_materialized_views
   - include:
-      file: 07_procedures/0000changelog.yaml
+      file: 07_functions/0000changelog.yaml
       relativeToChangelogFile: true
       contextFilter: 01_ddl
-      labels: 07_procedures
+      labels: 07_functions
   - include:
-      file: 08_triggers/0000changelog.yaml
+      file: 08_procedures/0000changelog.yaml
       relativeToChangelogFile: true
       contextFilter: 01_ddl
-      labels: 08_triggers
+      labels: 08_procedures
   - include:
-      file: 09_indexes/0000changelog.yaml
+      file: 09_triggers/0000changelog.yaml
       relativeToChangelogFile: true
       contextFilter: 01_ddl
-      labels: 09_indexes
+      labels: 09_triggers
+  - include:
+      file: 10_indexes/0000changelog.yaml
+      relativeToChangelogFile: true
+      contextFilter: 01_ddl
+      labels: 10_indexes
