@@ -1,1 +1,16 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 5f3d5a1d-7de4-4e95-81e6-0d1cda2f5c4d
+      author: pemarival
+      labels: "BD-07-dev,ddl,base,notification"
+      comment: Creates the baseline types for the notification module.
+      changes:
+        - sqlFile:
+            path: 007_create_notification_types.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/02_types/007_create_notification_types.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

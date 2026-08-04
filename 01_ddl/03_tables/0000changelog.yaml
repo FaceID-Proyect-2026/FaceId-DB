@@ -75,6 +75,21 @@ databaseChangeLog:
             relativeToChangelogFile: true
             stripComments: false         
   - changeSet:
+      id: 8e0f6d8f-9b52-4b86-80f6-5f6d2ed0e8af
+      author: codex
+      labels: "BD-07-dev,ddl,base,notification"
+      comment: Creates the baseline tables for the notification module.
+      changes:
+        - sqlFile:
+            path: 007_create_notification_tables.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/007_create_notification_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
       id: 2fd0afee-3023-47a9-98a8-96d3558058c5
       author: pemarival
       labels: "BD-01-dev,ddl,base,legal"
