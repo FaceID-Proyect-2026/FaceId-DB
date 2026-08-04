@@ -25,6 +25,11 @@ databaseChangeLog:
       contextFilter: 01_ddl
       labels: 04_alter
   - include:
+      file: 04_views/0000changelog.yaml
+      relativeToChangelogFile: true
+      contextFilter: 01_ddl
+      labels: 04_alter
+  - include:
       file: 05_views/0000changelog.yaml
       relativeToChangelogFile: true
       contextFilter: 01_ddl

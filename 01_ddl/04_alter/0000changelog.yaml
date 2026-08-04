@@ -90,6 +90,21 @@ databaseChangeLog:
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
+      id: 4d1f0bc1-8f6b-4f3d-8f0e-7fb7dc4f0e21
+      author: codex
+      labels: "BD-07-dev,ddl,base,notification"
+      comment: Creates the foreign keys for the notification module.
+      changes:
+        - sqlFile:
+            path: 007_create_foreignkeys_notification.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/007_create_foreignkeys_notification_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
       id: 3b48c1e3-4bd9-494d-b60b-6f82273d325a
       author: pemarival
       labels: "BD-01-dev,dml,foreignkeys,legal"
