@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5dd6d1f2-9fe1-4a31-b5d6-e3551eae3594
+      author: pemarival
+      labels: "BD-01-dev,dml,base,initial seed "
+      comment: Initial data for the tables.
+      changes:
+        - sqlFile:
+            path: seed.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/00_inserts/seed.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
