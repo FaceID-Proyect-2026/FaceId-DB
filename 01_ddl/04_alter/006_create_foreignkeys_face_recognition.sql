@@ -25,5 +25,5 @@ REFERENCES facialrecognition.device (id_device);
 
 ALTER TABLE facialrecognition.biometric_log
 ADD CONSTRAINT fk_biometric_log_facial_event
-FOREIGN KEY (id_event)
+FOREIGN KEY (id_facial_event)
 REFERENCES facialrecognition.facial_event (id_facial_event);
