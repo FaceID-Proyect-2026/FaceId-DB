@@ -91,7 +91,7 @@ databaseChangeLog:
             stripComments: false
   - changeSet:
       id: 4d1f0bc1-8f6b-4f3d-8f0e-7fb7dc4f0e21
-      author: codex
+      author: pemarival
       labels: "BD-07-dev,ddl,base,notification"
       comment: Creates the foreign keys for the notification module.
       changes:
