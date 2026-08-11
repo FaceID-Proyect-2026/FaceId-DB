@@ -17,3 +17,14 @@ ALTER TABLE schedule.schedule_exception
 ADD CONSTRAINT fk_schedule_exception_schedule
 FOREIGN KEY (id_schedule)
 REFERENCES schedule.schedule(id_schedule);
+
+ALTER TABLE schedule.schedule_exception
+ADD CONSTRAINT fk_schedule_exception_instructor_replacement
+FOREIGN KEY (id_instructor_replacement)
+REFERENCES security.user_app(id_user_app);
+
+
+ALTER TABLE schedule.schedule_exception
+ADD CONSTRAINT fk_schedule_exception_environment
+FOREIGN KEY (id_environment)
+REFERENCES environment.environment(id_environment);
