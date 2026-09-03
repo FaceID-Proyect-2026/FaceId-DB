@@ -119,3 +119,49 @@ databaseChangeLog:
             path: ../../05_rollbacks/01_ddl/04_alter/008_create_foreignkeys_legal_tables.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: 7f2a9c41-6d83-4e15-b9a7-3c58e2f14d90
+      author: pemarival
+      labels: "BD-01-dev,ddl,alter,validation"
+      comment: "Adds validation status and validation status constraint to the user_app table."
+      changes:
+        - sqlFile:
+            path: 009_add_validation_status_to_user_app.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/009_add_validation_status_to_user_app.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 8a4f2c61-7e93-45bd-a126-5c89d0f37482
+      author: pemarival
+      labels: "HU-08-dev,ddl,foreignkeys,academic"
+      comment: Adds foreign keys to the transfer request table.
+      changes:
+        - sqlFile:
+            path: 010_create_foreignkeys_transfer_request.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/010_create_foreignkeys_transfer_request.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: c3f6e8a2-4b71-4d95-a3e0-8f27b6d19c54
+      author: pemarival
+      labels: "HU-08-dev,ddl,foreignkeys,security"
+      comment: Adds foreign key to the document change log table.
+      changes:
+        - sqlFile:
+            path: 011_create_foreignkeys_document_change_log.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/011_create_foreignkeys_document_change_log.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

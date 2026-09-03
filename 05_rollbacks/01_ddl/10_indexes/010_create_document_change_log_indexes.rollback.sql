@@ -1,0 +1,1 @@
+DROP INDEX IF EXISTS security.idx_document_change_log_user;

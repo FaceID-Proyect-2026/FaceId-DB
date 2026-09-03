@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS academic.transfer_request;

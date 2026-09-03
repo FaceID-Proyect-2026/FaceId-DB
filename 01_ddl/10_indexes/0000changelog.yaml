@@ -89,3 +89,34 @@ databaseChangeLog:
             path: ../../05_rollbacks/01_ddl/10_indexes/008_create_legal_indexes.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: 6d91e4a7-2c58-4b83-9f16-7e05a3c82149
+      author: pemarival
+      labels: "HU-08-dev,ddl,indexes,academic"
+      comment: Creates indexes for the transfer request table.
+      changes:
+        - sqlFile:
+            path: 009_create_transfer_request_indexes.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/10_indexes/009_create_transfer_request_indexes.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 7b4e2c91-6a35-4d80-b217-9f63e5c04872
+      author: pemarival
+      labels: "HU-08-dev,ddl,indexes,security"
+      comment: Creates indexes for the document change log table.
+      changes:
+        - sqlFile:
+            path: 010_create_document_change_log_indexes.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/10_indexes/010_create_document_change_log_indexes.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

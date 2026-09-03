@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS security.document_change_log;

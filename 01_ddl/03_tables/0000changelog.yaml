@@ -43,7 +43,7 @@ databaseChangeLog:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/03_tables/003_create_academic_tables.rollback.sql
             relativeToChangelogFile: true
-            stripComments: false   
+            stripComments: false
   - changeSet:
       id: ad6e0e60-20ad-47b5-878d-8932dfaf3339
       author: pemarival
@@ -73,7 +73,7 @@ databaseChangeLog:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/03_tables/005_create_schedule_tables.rollback.sql
             relativeToChangelogFile: true
-            stripComments: false       
+            stripComments: false
   - changeSet:
       id: 7c1f37b0-8b49-4d26-b9e7-d4f7a2a1e3d9
       author: pemarival
@@ -103,7 +103,7 @@ databaseChangeLog:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/03_tables/007_create_notification_tables.rollback.sql
             relativeToChangelogFile: true
-            stripComments: false          
+            stripComments: false
   - changeSet:
       id: 2fd0afee-3023-47a9-98a8-96d3558058c5
       author: pemarival
@@ -117,5 +117,36 @@ databaseChangeLog:
       rollback:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/03_tables/008_create_legal_tables.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 5c7e1a92-84d3-4f6b-a218-9d53e7c04176
+      author: pemarival
+      labels: "HU-08-dev,ddl,base,academic"
+      comment: Creates the transfer request table for the academic module.
+      changes:
+        - sqlFile:
+            path: 009_create_transfer_request_table.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/009_create_transfer_request_table.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 9e3b7c52-1a64-4d89-b027-6f41c8e59372
+      author: pemarival
+      labels: "HU-08-dev,ddl,base,security"
+      comment: Creates the document change log table for the security module.
+      changes:
+        - sqlFile:
+            path: 010_create_document_change_log_table.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/010_create_document_change_log_table.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
